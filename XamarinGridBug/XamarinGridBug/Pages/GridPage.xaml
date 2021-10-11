@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:xamaringridbug="clr-namespace:XamarinGridBug"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="XamarinGridBug.MainPage">
+
+    <ContentPage.BindingContext>
+        <xamaringridbug:ViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+  
+            <Grid BindableLayout.ItemsSource="{Binding ModelList}" x:Name="mainGrid">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="xamaringridbug:Model">
+                        <StackLayout
+                            Orientation="Horizontal"
+                            BackgroundColor="CadetBlue"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            Grid.Column="0"
+                            Grid.Row="{Binding Row}">
+                            
+                            <Button
+                                Text="{Binding TextString}"
+                                BackgroundColor="Red"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                xct:TouchEffect.Command="{Binding BindingContext.RemoveModelCommand, Source={x:Reference mainGrid}}" 
+                                xct:TouchEffect.CommandParameter="{Binding .}"
+                                />
+
+                            <Button
+                                Text="Button with native command"
+                                BackgroundColor="Green"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                Command="{Binding 
+                                                    BindingContext.RemoveModelCommand,
+                                                    Source={x:Reference mainGrid}}" 
+                                CommandParameter="{Binding .}"/>
+
+                            <BoxView
+                                WidthRequest="50"
+                                BackgroundColor="Blue"
+                                xct:TouchEffect.Command="{Binding 
+                                                    BindingContext.RemoveModelCommand,
+                                                    Source={x:Reference mainGrid}}" 
+                                xct:TouchEffect.CommandParameter="{Binding .}">
+                            
+                            </BoxView>
+
+                            <Label
+                                Text="This is a label"
+                                WidthRequest="50"
+                                BackgroundColor="Lavender"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                xct:TouchEffect.Command="{Binding 
+                                                    BindingContext.RemoveModelCommand,
+                                                    Source={x:Reference mainGrid}}" 
+                                xct:TouchEffect.CommandParameter="{Binding .}"/>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:xamaringridbug="clr-namespace:XamarinGridBug"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="XamarinGridBug.ListView">
+    
+    <ContentPage.BindingContext>
+        <xamaringridbug:ViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+          <ListView x:Name="MyListView"
+                    ItemsSource="{Binding ModelList}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                        <StackLayout 
+                            Orientation="Horizontal"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand">
+                            
+                            <Button
+                                Text="{Binding TextString}"
+                                BackgroundColor="Red"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                xct:TouchEffect.Command="{Binding 
+                                                    BindingContext.RemoveModelCommand,
+                                                    Source={x:Reference MyListView}}" 
+                                xct:TouchEffect.CommandParameter="{Binding .}"/>
+
+                            <Button
+                                Text="Button with native command"
+                                BackgroundColor="Green"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                Command="{Binding 
+                                                    BindingContext.RemoveModelCommand,
+                                                    Source={x:Reference MyListView}}" 
+                                CommandParameter="{Binding .}"/>
+
+                            <Label
+                                Text="This is a label"
+                                BackgroundColor="Pink"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                xct:TouchEffect.Command="{Binding 
+                                                    BindingContext.RemoveModelCommand,
+                                                    Source={x:Reference MyListView}}" 
+                                xct:TouchEffect.CommandParameter="{Binding .}"/>
+                        </StackLayout>
+                    </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+    
+          </ListView>
+    </ContentPage.Content>
+</ContentPage>
