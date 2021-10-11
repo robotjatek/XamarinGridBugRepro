@@ -11,7 +11,7 @@ There are no problems with Grid&Button combo if I use the native `Command` and `
 `BoxView` crashes when used in  `grid` with or without the `UseLegacyRenderers` flag when removed from the grid. But works fine in the `listview` with both renderers.
 
 |	        | Button with xct | Button with native commands | BoxView | Label |
-|:----          |:------------:| :----------------------- -: | : ----: | - ----- |
+|:----|:------------:| :------------------------: | :----: | ------ |
 | Grid fast renderer      |:x:|:heavy_check_mark:|:x:|:x:|
 | Grid legacy renderer |:heavy_check_mark:|:heavy_check_mark:|:x:|:heavy_check_mark:|
 | ListView fast renderer   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:| :heavy_check_mark: |
